@@ -1,3 +1,4 @@
+import { FRASES } from './frases.mock';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PainelComponent implements OnInit {
 
+  public frases = FRASES;
+  public resposta
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public atualizaResposta(resposta: Event): void {
+    this.resposta = (<HTMLInputElement>resposta.target).value;
+    console.log(this.resposta);
   }
 
 }
