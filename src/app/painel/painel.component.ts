@@ -10,7 +10,7 @@ import { Frase } from '../shared/frase.model';
 export class PainelComponent implements OnInit {
 
   public frases = FRASES;
-  public resposta: string;
+  public resposta: string = '';
 
   public rodada: number = 0;
   public rodadaFrase: Frase;
@@ -18,7 +18,7 @@ export class PainelComponent implements OnInit {
   public progresso: number = 0;
 
   constructor() {
-    this.rodadaFrase = this.frases[this.rodada];
+    this.atualizaFraseDaRodada();
   }
 
   ngOnInit(): void {
@@ -29,16 +29,21 @@ export class PainelComponent implements OnInit {
   }
 
   public verificarResposta(): void {
-
     if (this.rodadaFrase.frasePtBr == this.resposta) {
       alert('Acertou');
       this.rodada++;
-      this.rodadaFrase = this.frases[this.rodada];
+      this.atualizaFraseDaRodada();
       this.progresso += (100 / this.frases.length);
+      console.log(this.progresso)
+      this.resposta = '';
     } else {
       alert('Errou');
     }
+  }
 
+  public atualizaFraseDaRodada(): void {
+    this.rodadaFrase = this.frases[this.rodada];
+    this.resposta = '';
   }
 
 }
